@@ -1,0 +1,167 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author saksh
+ */
+import java.io.*;
+ class nb1 {
+    void sort(String a[],int h)
+    {
+        for(int i=0;i<h;i++)
+        {
+            for(int j=0;j<h-i-1;j++)
+            {
+                String s=a[j];
+                String s1=s.substring(0,s.lastIndexOf(' '));
+                int c=Integer.parseInt(s.substring(s.lastIndexOf(' ')+1));
+                String a1=s.substring(0,s.indexOf(' '));
+                double cg1=Double.parseDouble(s1.substring(s1.indexOf(' ')+1));
+                
+                String z=a[j+1].substring(0,a[j+1].lastIndexOf(' '));
+                String xx=z.substring(0,z.indexOf(' '));
+                 double cg=Double.parseDouble(z.substring(z.indexOf(' ')+1));
+                 int m=Integer.parseInt(a[j+1].substring(a[j+1].lastIndexOf(' ')+1));
+                
+                if(cg>cg1)
+        {
+            String t=a[j];
+            a[j]=a[j+1];
+            a[j+1]=t;
+        }
+        else if(cg==cg1&&c==m&&(a1.equals(xx)==false))
+        {
+            if(a1.compareTo(xx)>0)
+            {
+               String t=a[j];
+            a[j]=a[j+1];
+            a[j+1]=t;
+            }
+            
+        }
+        else if(cg==cg1&&c!=m&&(a1.equals(xx)==true))
+        {
+            if(m<c)
+            {
+               String t=a[j];
+            a[j]=a[j+1];
+            a[j+1]=t;
+            }
+        }
+            }
+        }
+    }
+    void display(String a[],int j)
+    {
+        if(a[0]==null)
+      System.out.println("EMPTY");
+      else
+       { 
+      for(int i=0;i<j;i++)
+      {
+         
+         System.out.println(a[i].substring(0,a[i].indexOf(' ')));
+      }
+    }
+    }
+    int fill(String a[],String b[],int h)
+    {
+        int hh=h;
+      for(int i=0;i<a.length;i++)
+      {
+          if(a[i]!=null)
+              b[hh++]=a[i];
+    }
+      return hh;
+    }
+    void g(String a[])
+    {
+       
+    int c=-1;
+    String a1="";
+    double cg1=-0.0;
+    int q=0;
+    for(int i=0;i<a.length;i++)
+    {
+        
+        if(a[i]!=null)
+        {
+        String z=a[i].substring(0,a[i].lastIndexOf(' '));
+        String xx=z.substring(0,z.indexOf(' '));
+        double cg=Double.parseDouble(z.substring(z.indexOf(' ')+1));
+       
+        int m=Integer.parseInt(a[i].substring(a[i].lastIndexOf(' ')+1));
+        if(cg>cg1)
+        {
+            q=i;
+            cg1=cg;
+            c=m;
+            a1=xx;
+        }
+        else if(cg==cg1&&c==m&&(a1.equals(xx)==false))
+        {
+            if(a1.compareTo(xx)>0)
+            {
+               q=i; 
+               cg1=cg;
+               c=m;
+               a1=xx;
+            }
+            
+        }
+        else if(cg==cg1&&c!=m&&(a1.equals(xx)==true))
+        {
+            if(m<c)
+            {
+               q=i; 
+               cg1=cg;
+               c=m;
+               a1=xx; 
+            }
+        }
+        }
+    }
+      
+      a[q]=null;  
+          
+    }
+      
+    
+    public static void main(String args[])throws IOException
+    {
+      BufferedReader inp = new BufferedReader (new InputStreamReader(System.in));
+      nb1 o=new nb1();
+      int i=Integer.parseInt(inp.readLine());String f="";
+      int j=0;
+      String b[]=new String[i];
+      j=0;
+      int c=0;
+      String b1[]=new String[i];int n=0;
+      while(i!=0)
+      {
+          String s=inp.readLine();
+          
+          if(s.contains("ENTER")==true)
+          {
+              
+              b[j++]=s.substring(s.indexOf(' ')+1);
+          }
+          
+          else
+          {
+             o.g(b); 
+              
+          }
+          f=s;i--;
+      }
+      c=o.fill(b, b1, c);
+      o.sort(b1,c);
+      o.display(b1,c);
+    }
+    
+    
+}
